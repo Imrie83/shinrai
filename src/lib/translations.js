@@ -1,0 +1,181 @@
+export const T = {
+  en: {
+    nav:    ["Services", "Process", "About", "Contact"],
+    navIds: ["#services", "#process", "#about", "#contact"],
+    badge:  "English Localization & UX",
+
+    heroTitle:  ["Turn Your Japanese", "Website Into a"],
+    heroItalic: "Global Client Magnet.",
+    heroSub:    "Professional English localization and UX improvements for Japanese companies expanding internationally.",
+    cta:        "Get Free Audit",
+    ctaSub:     "No obligation · 24 h response",
+
+    problemsLabel: "Common Challenges",
+    problemsTitle: "Where Japanese Sites Lose International Visitors",
+    problemsSub:   "Small language and UX gaps can quietly prevent overseas clients from getting in touch.",
+    problems: [
+      { id: "unclear",   title: "Unnatural English",  desc: "Machine-translated copy that reads awkwardly, making it harder for visitors to trust the message." },
+      { id: "context",   title: "Missing Context",    desc: "Details that Japanese readers understand intuitively often need to be made explicit for overseas audiences." },
+      { id: "tone",      title: "Tone Mismatch",      desc: "Writing style tuned for a Japanese audience can feel distant or unclear to English-speaking visitors." },
+      { id: "nextsteps", title: "Unclear Next Steps", desc: "Contact flows and calls-to-action that work well in Japanese sometimes don't translate directly." },
+    ],
+
+    solutionLabel: "The Solution",
+    solutionTitle: "What I Work On",
+    solutionSub:   "Focused improvements that help your English site communicate as clearly as your Japanese one.",
+    solutions: [
+      { num: "01", title: "English Rewrite",     desc: "Natural, fluent copy written by a native speaker who understands your industry." },
+      { num: "02", title: "Clarity & Structure", desc: "Logical information flow that guides visitors toward taking the next step." },
+      { num: "03", title: "UX Review & Fixes",   desc: "Friction points identified and addressed: forms, CTAs, navigation." },
+      { num: "04", title: "Cultural Adaptation", desc: "Tone adjusted for your target market — US, UK, Australia, or global." },
+      { num: "05", title: "Developer Handoff",   desc: "Clean copy and implementation-ready recommendations, or direct code changes." },
+    ],
+
+    processLabel: "How It Works",
+    processTitle: "Simple Process",
+    processSub:   "From first message to delivered improvements, typically within two weeks.",
+    process: [
+      { id: "audit",  step: "01", title: "Audit",  desc: "I review your site in detail and document every opportunity to improve." },
+      { id: "report", step: "02", title: "Report", desc: "You receive a clear, prioritised report — plain language, no jargon." },
+      { id: "fix",    step: "03", title: "Fix",    desc: "I implement changes directly, or provide ready-to-use copy and guidance." },
+      { id: "review", step: "04", title: "Review", desc: "We go through the changes together and refine until everything feels right." },
+    ],
+
+    trustLabel: "Why Me",
+    trustTitle: "Why Businesses Work With Me",
+    trustSub:   "Not an agency. Not a template service. A developer who also writes.",
+    trustList: [
+      { id: "dev",    title: "Developer + Localization",   desc: "I understand the technical side and the language side — fewer handoff problems, faster results." },
+      { id: "human",  title: "Human Writing, AI-Assisted", desc: "I use AI tools for research and speed, but every sentence is written and reviewed by me." },
+      { id: "fast",   title: "Fast Turnaround",            desc: "Audit reports within 48 hours. Most full projects delivered within one to two weeks." },
+      { id: "direct", title: "Direct Communication",       desc: "You work with me directly, in English or Japanese, with no intermediaries." },
+    ],
+
+    caseLabel: "Example Project",
+    caseTitle: "What a Typical Engagement Looks Like",
+    caseRows: [
+      ["Sector",        "B2B manufacturing — industrial components for export markets"],
+      ["The Situation", "A well-established Japanese manufacturer had an English site that hadn't been meaningfully updated in years. The translation was technically readable but felt stiff, and key pages lacked the context overseas buyers expect before getting in touch."],
+      ["What I Did",    "Rewrote the core service and about pages in natural English, restructured the contact page to reduce friction, and flagged several UX issues in the enquiry form for the client's developer to fix."],
+      ["The Outcome",   "The client felt their site finally represented the company properly to an international audience. Specific sales figures aren't something I track or claim — that's between them and their customers."],
+    ],
+    caseNote: "Details are representative of a real engagement, anonymised at the client's request.",
+
+    bioLabel: "About",
+    bioTitle: "Marcin Zielinski",
+    bioRole:  "Full-Stack Developer & English Localization Specialist",
+    bioCredentials: [
+      "Full-stack web development across frontend and backend",
+      "Native-level English · Conversational Japanese",
+      "10+ years building for clients in Europe, Asia, and globally",
+      "Based in Poland · Working remotely worldwide",
+    ],
+    bioCopy: "I'm a full-stack developer with a long-standing interest in how language and UX shape the way products are received internationally. I started Shinrai because I kept seeing technically strong Japanese products held back by English websites that didn't do them justice. My development background means I don't just rewrite copy — I can identify structural and UX issues too, and fix them directly.",
+    bioTechLabel: "Technical Background",
+
+    formLabel: "Free Audit",
+    formTitle: "Request Your Free Audit",
+    formSub:   "Share your website URL and I'll send you a personalised report within 24 hours.",
+    name:      "Your Name",
+    email:     "Email Address",
+    site:      "Website URL",
+    send:      "Send Request",
+    sending:   "Sending…",
+    success:   "Request sent! I'll be in touch within 24 hours.",
+
+    footerTagline: "Making Japanese businesses visible to the world.",
+    footerCopy:    "2026 Shinrai Web. All rights reserved.",
+
+    backHome: "Back to home",
+  },
+
+  ja: {
+    nav:    ["サービス", "流れ", "自己紹介", "お問い合わせ"],
+    navIds: ["#services", "#process", "#about", "#contact"],
+    badge:  "英語ローカライズ・UX改善",
+
+    heroTitle:  ["海外のお客様に", "伝わる英語サイトへ。"],
+    heroItalic: "",
+    heroSub:    "日本企業向けの英語ローカライズ・UX改善サービス。海外展開を、言葉の壁なく。",
+    cta:        "無料診断を依頼する",
+    ctaSub:     "しつこい営業なし・24時間以内返信",
+
+    problemsLabel: "よくある課題",
+    problemsTitle: "海外ユーザーに伝わらない、よくある理由",
+    problemsSub:   "小さな言語・UXのズレが、海外からの問い合わせを静かに遠ざけていることがあります。",
+    problems: [
+      { id: "unclear",   title: "不自然な英語表現",      desc: "機械翻訳の文章は読みにくく、訪問者に信頼感を与えにくい場合があります。" },
+      { id: "context",   title: "前提知識の差",           desc: "日本人には自明のことでも、海外ユーザーには補足が必要な情報があります。" },
+      { id: "tone",      title: "トーンのズレ",           desc: "日本語で自然な表現も、英語圏のユーザーには距離感や分かりにくさを生むことがあります。" },
+      { id: "nextsteps", title: "次のアクションが不明確", desc: "日本語サイトで機能するお問い合わせ導線も、英語ではそのまま使えないことがあります。" },
+    ],
+
+    solutionLabel: "対応内容",
+    solutionTitle: "改善できること",
+    solutionSub:   "英語サイトが日本語サイトと同じように伝わるよう、必要な部分を丁寧に整えます。",
+    solutions: [
+      { num: "01", title: "英語の書き直し",    desc: "業界を理解したネイティブが書く、自然で伝わる英語コピー。" },
+      { num: "02", title: "構成の整理",         desc: "訪問者が次の行動へ進みやすい、論理的な情報の流れへ。" },
+      { num: "03", title: "UX確認・修正",       desc: "フォーム・CTA・ナビゲーションなど、使いにくい箇所を特定・改善。" },
+      { num: "04", title: "文化的な調整",       desc: "米国・英国・オーストラリアなど、ターゲット市場に合ったトーンへ。" },
+      { num: "05", title: "開発者への引き渡し", desc: "すぐに使えるコピーと実装用の提案、または直接コード修正での対応も可能。" },
+    ],
+
+    processLabel: "ご利用の流れ",
+    processTitle: "シンプルな4ステップ",
+    processSub:   "最初のご連絡から改善完了まで、通常2週間以内。",
+    process: [
+      { id: "audit",  step: "01", title: "診断",       desc: "サイト全体を確認し、改善点を丁寧にまとめます。" },
+      { id: "report", step: "02", title: "レポート",   desc: "専門用語なし、わかりやすい優先順位付きレポートをお届けします。" },
+      { id: "fix",    step: "03", title: "改善",       desc: "直接実装するか、すぐに使えるコピーと提案をご提供します。" },
+      { id: "review", step: "04", title: "確認・調整", desc: "一緒に内容を確認しながら、納得いくまで仕上げます。" },
+    ],
+
+    trustLabel: "選ばれる理由",
+    trustTitle: "Shinraiが選ばれる理由",
+    trustSub:   "代理店でも、テンプレートサービスでもない。開発もできる、書き手がいます。",
+    trustList: [
+      { id: "dev",    title: "開発者＋ローカライズの専門家", desc: "技術と言語の両方を理解しているため、引き継ぎの手間が少なく、対応がスムーズです。" },
+      { id: "human",  title: "AIを活用した人間の文章",       desc: "AIをリサーチや効率化に活用しつつ、すべての文章は私自身が書き、確認します。" },
+      { id: "fast",   title: "スピード対応",                 desc: "診断レポートは48時間以内。ほとんどのプロジェクトは1〜2週間以内に完了します。" },
+      { id: "direct", title: "ダイレクトなやりとり",         desc: "仲介なし。日本語・英語どちらでも、直接対応します。" },
+    ],
+
+    caseLabel: "プロジェクト例",
+    caseTitle: "実際の依頼はどのような流れか",
+    caseRows: [
+      ["業種",     "B2B製造業——輸出向け工業部品メーカー"],
+      ["状況",     "長年にわたり実績を積んできた日本の製造業者でしたが、英語サイトはしばらく更新されておらず、翻訳は読めるものの固い印象で、海外バイヤーが問い合わせ前に求める情報も不足していました。"],
+      ["対応内容", "主要なサービスページと会社紹介ページを自然な英語で書き直し、お問い合わせページの導線を整理。フォーム上のUXの問題点もいくつか洗い出し、クライアントの開発担当者に共有しました。"],
+      ["結果",     "クライアントから「ようやく海外のお客様に自社をきちんと伝えられるサイトになった」とのフィードバックをいただきました。具体的な売上数字は私の方では把握・公表していません。"],
+    ],
+    caseNote: "実際の依頼をもとに、クライアントの希望により詳細を匿名化しています。",
+
+    bioLabel: "自己紹介",
+    bioTitle: "Marcin Zielinski",
+    bioRole:  "フルスタック開発者・英語ローカライズ専門家",
+    bioCredentials: [
+      "フロントエンド・バックエンド両対応のフルスタック開発",
+      "英語ネイティブレベル・日本語日常会話レベル",
+      "ヨーロッパ・アジア・グローバル企業での10年以上の開発経験",
+      "ポーランド在住・フルリモートで世界対応",
+    ],
+    bioCopy: "私はフルスタックエンジニアとして、長年にわたり言語とUXが製品の国際的な受け取られ方に与える影響に関心を持ってきました。技術的に優れた日本のプロダクトが、英語サイトの問題で海外顧客に届いていない場面を繰り返し目にしてきたことが、Shinraiを立ち上げたきっかけです。",
+    bioTechLabel: "技術スタック",
+
+    formLabel: "無料診断",
+    formTitle: "無料診断を申し込む",
+    formSub:   "サイトのURLをお送りいただければ、24時間以内に個別レポートをお届けします。",
+    name:      "お名前",
+    email:     "メールアドレス",
+    site:      "サイトURL",
+    send:      "送信する",
+    sending:   "送信中…",
+    success:   "送信完了しました。24時間以内にご連絡いたします。",
+
+    footerTagline: "日本企業を、世界へ。",
+    footerCopy:    "2026 Shinrai Web. 無断転載を禁じます。",
+
+    backHome: "トップへ戻る",
+  },
+};
