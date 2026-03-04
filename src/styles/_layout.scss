@@ -1,0 +1,17 @@
+@use 'variables' as *;
+.section-pad   { padding: 80px 24px; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+
+.grid-hero      { display: grid; grid-template-columns: 1fr 1fr;    gap: 56px; align-items: center; }
+.grid-2col      { display: grid; grid-template-columns: 1fr 1fr;    gap: 64px; }
+.grid-solutions { display: grid; grid-template-columns: 1fr 2fr;    gap: 64px; }
+.grid-bio       { display: grid; grid-template-columns: 1fr 1.6fr;  gap: 64px; align-items: start; }
+
+@media (min-width: 768px) and (max-width: $bp-tablet) {
+  .section-pad    { padding: 64px 32px; }
+  .grid-hero, .grid-2col, .grid-solutions, .grid-bio { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: $bp-mobile) {
+  .section-pad    { padding: 56px 20px; }
+  .grid-hero, .grid-2col, .grid-solutions, .grid-bio { grid-template-columns: 1fr; gap: 32px; }
+}

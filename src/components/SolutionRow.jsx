@@ -2,17 +2,12 @@ import { motion } from "framer-motion";
 import { fadeUp } from "../lib/motion";
 
 const SolutionRow = ({ num, title, desc, isLast }) => (
-  <motion.div
-    variants={fadeUp()}
-    style={{
-      display: "grid", gridTemplateColumns: "52px 1fr 2fr",
-      gap: "0 28px", alignItems: "start", padding: "26px 0",
-      borderBottom: isLast ? "none" : "1px solid var(--cream)",
-    }}
-  >
-    <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22, color: "var(--accent)", paddingTop: 2 }}>{num}</span>
-    <span style={{ fontWeight: 600, fontSize: 15, paddingTop: 2 }}>{title}</span>
-    <span style={{ fontSize: 14, lineHeight: 1.7, color: "var(--muted)" }}>{desc}</span>
+  <motion.div variants={fadeUp()} className={`solution-row${isLast ? " solution-row--last" : ""}`}>
+    <div className="solution-row__grid">
+      <span className="solution-row__num">{num}</span>
+      <span className="solution-row__title">{title}</span>
+      <span className="solution-row__desc">{desc}</span>
+    </div>
   </motion.div>
 );
 

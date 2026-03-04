@@ -1,0 +1,78 @@
+@use 'variables' as *;
+
+// Tag pill
+.tag { display: inline-block; background: $indigo-light; color: $indigo; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; }
+
+// Primary button
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: $indigo; color: white; padding: 14px 28px; border-radius: 12px; border: none;
+  font-family: $font-sans; font-size: 15px; font-weight: 600; cursor: pointer; width: 100%;
+  box-shadow: 0 4px 20px rgba(44,63,160,0.25); transition: background 0.2s, transform 0.15s;
+  &:hover:not(:disabled) { background: $indigo-dark; transform: translateY(-2px); }
+  &:disabled { opacity: 0.6; cursor: default; }
+}
+
+// Nav
+.site-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(247,244,239,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid $cream;
+  &__bar { max-width: 1080px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  &__logo { font-family: $font-serif; font-size: 22px; background: none; border: none; cursor: pointer; padding: 0; color: $ink; span { color: $indigo; } }
+  &__links { display: flex; gap: 28px; align-items: center; a { font-size: 14px; font-weight: 500; color: $muted; transition: color 0.15s; &:hover { color: $ink; } } }
+  &__lang { display: flex; gap: 4px; margin-left: 4px; }
+  &__lang-btn { padding: 4px 11px; border-radius: 8px; border: 1px solid $cream; background: transparent; color: $muted; font-size: 12px; font-weight: 600; cursor: pointer; font-family: $font-sans; transition: all 0.15s; &--active { border-color: $indigo; background: $indigo; color: white; } }
+  &__mobile-row { display: none; align-items: center; gap: 8px; }
+  &__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: $ink; }
+  &__drawer { display: none; flex-direction: column; background: $paper; border-top: 1px solid $cream; padding: 8px 0 16px; a { font-size: 14px; font-weight: 500; color: $muted; padding: 12px 20px; transition: color 0.15s; &:hover { color: $indigo; } } &--open { display: flex; } }
+  @media (max-width: $bp-mobile) {
+    &__links { display: none; }
+    &__mobile-row { display: flex; }
+    &__hamburger { display: flex; }
+  }
+}
+
+// Section label
+.section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: $indigo; margin-bottom: 14px; &__line { width: 22px; height: 2px; background: $indigo; border-radius: 2px; flex-shrink: 0; } &--light { color: rgba(255,255,255,0.45); .section-label__line { background: rgba(255,255,255,0.35); } } }
+
+// Cards shared base
+.card { background: $white; border-radius: $radius; border: 1px solid $cream; box-shadow: $shadow-sm; }
+.card-icon { width: 44px; height: 44px; border-radius: 12px; background: $indigo-light; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+// Problem card
+.problem-card { @extend .card; padding: 28px 24px; transition: transform 0.2s; &:hover { transform: translateY(-4px); } &__title { font-family: $font-serif; font-size: 18px; margin-bottom: 8px; } &__desc { font-size: 14px; line-height: 1.7; color: $muted; } }
+
+// Solution row
+.solution-row { padding: 22px 0; border-bottom: 1px solid $cream; &:last-child { border-bottom: none; } &__grid { display: grid; grid-template-columns: 52px 1fr 2fr; gap: 0 28px; align-items: start; } &__num { font-family: $font-serif; font-style: italic; font-size: 22px; color: $accent; padding-top: 2px; } &__title { font-weight: 600; font-size: 15px; padding-top: 2px; } &__desc { font-size: 14px; line-height: 1.7; color: $muted; } @media (max-width: $bp-mobile) { &__grid { grid-template-columns: 1fr; gap: 4px; } &__num { display: none; } } }
+
+// Process card
+.process-card { background: rgba(255,255,255,0.05); border-radius: $radius; border: 1px solid rgba(255,255,255,0.1); padding: 32px 24px; position: relative; overflow: hidden; transition: transform 0.2s; &:hover { transform: translateY(-4px); } &__step { position: absolute; top: 16px; right: 20px; font-family: $font-serif; font-style: italic; font-size: 52px; color: rgba(255,255,255,0.06); line-height: 1; user-select: none; } &__icon { width: 48px; height: 48px; border-radius: 14px; background: $indigo; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; } &__title { font-family: $font-serif; font-size: 20px; color: white; margin-bottom: 10px; } &__desc { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.55); } }
+
+// Trust item
+.trust-item { @extend .card; display: flex; gap: 18px; align-items: flex-start; padding: 20px 22px; &__icon { width: 38px; height: 38px; border-radius: 10px; background: $indigo-light; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } &__title { font-weight: 600; font-size: 15px; margin-bottom: 4px; } &__desc { font-size: 14px; line-height: 1.7; color: $muted; } }
+
+// Tech stack
+.tech-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; @media (max-width: $bp-mobile) { grid-template-columns: 1fr; } }
+.tech-group { @extend .card; padding: 16px 18px; &__header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; } &__icon { width: 28px; height: 28px; border-radius: 8px; background: $indigo-light; display: flex; align-items: center; justify-content: center; } &__label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: $indigo; } &__pills { display: flex; flex-wrap: wrap; gap: 5px; } &__pill { font-size: 12px; background: $cream; color: $ink; padding: 2px 9px; border-radius: 99px; font-weight: 500; } }
+
+// Hero before/after card
+.hero-card { background: $white; border-radius: 20px; border: 1px solid $cream; overflow: hidden; box-shadow: $shadow-lg; &__bar { background: $indigo; padding: 12px 18px; display: flex; align-items: center; gap: 10px; } &__dots { display: flex; gap: 5px; } &__dot { width: 11px; height: 11px; border-radius: 50%; } &__url { flex: 1; background: rgba(255,255,255,0.12); border-radius: 6px; padding: 3px 11px; font-size: 11px; color: rgba(255,255,255,0.6); font-family: monospace; } &__before { padding: 18px 18px 0; border-bottom: 1px solid $cream; } &__after { padding: 18px; } &__label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; &--before { color: #c0392b; } &--after { color: #27ae60; } } &__text { border-radius: 10px; padding: 14px 16px; font-size: 13px; line-height: 1.65; margin-bottom: 16px; &--before { background: #fff8f8; border: 1px solid #ffe0e0; color: #888; font-style: italic; } &--after { background: #f0faf5; border: 1px solid #b6e8cc; color: #222; margin-bottom: 12px; } } &__tags { display: flex; gap: 6px; flex-wrap: wrap; } @media (max-width: $bp-mobile) { display: none; } }
+
+// Case study card
+.case-card { background: $indigo; border-radius: 20px; padding: 36px 28px; color: white; width: 100%; &__label { font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: $accent; margin-bottom: 20px; } &__title { font-family: $font-serif; font-size: 20px; margin-bottom: 24px; } &__row { margin-bottom: 16px; } &__row-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 4px; } &__row-val { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); } &__note { margin-top: 20px; padding: 12px 16px; background: rgba(255,255,255,0.07); border-radius: 10px; font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.6; } }
+
+// Bio photo
+.bio-photo { width: 100%; aspect-ratio: 4/5; max-width: 280px; background: $indigo-light; border-radius: 20px; border: 2px dashed $indigo; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; margin-bottom: 22px; color: $indigo; span { font-size: 12px; font-weight: 500; opacity: 0.6; } @media (min-width: 768px) and (max-width: $bp-tablet) { max-width: 220px; } @media (max-width: $bp-mobile) { max-width: 180px; margin-inline: auto; } }
+
+// Form input
+.form-input { width: 100%; padding: 15px 18px; background: $white; border: 1px solid $cream; border-radius: 12px; font-size: 15px; font-family: $font-sans; color: $ink; outline: none; transition: border-color 0.15s; &:focus { border-color: $indigo; } }
+
+// Footer
+.site-footer { border-top: 1px solid $cream; background: $white; padding: 40px 24px; &__inner { max-width: 1080px; margin: 0 auto; } &__top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid $cream; } &__logo { font-family: $font-serif; font-size: 20px; background: none; border: none; cursor: pointer; padding: 0; color: $ink; span { color: $indigo; } } &__tagline { font-size: 13px; color: $muted; } &__bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; } &__links { display: flex; gap: 20px; flex-wrap: wrap; } &__link { font-size: 12px; color: $muted; background: none; border: none; cursor: pointer; font-family: $font-sans; padding: 0; transition: color 0.15s; &:hover { color: $indigo; } } &__copy { font-size: 12px; color: $muted; } }
+
+// Legal
+.legal-main { max-width: 740px; margin: 0 auto; padding: 48px 20px 80px; }
+.legal-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: $muted; background: none; border: none; cursor: pointer; font-family: $font-sans; margin-bottom: 36px; padding: 0; transition: color 0.15s; &:hover { color: $indigo; } }
+.legal-section { margin-bottom: 40px; h2 { font-family: $font-serif; font-size: 22px; margin-bottom: 12px; } p, li { font-size: 15px; line-height: 1.8; color: $muted; } ul { padding-left: 20px; display: flex; flex-direction: column; gap: 4px; } }
+.legal-divider { border-top: 1px solid $cream; padding-top: 40px; }
+.legal-table { overflow-x: auto; table { width: 100%; border-collapse: collapse; font-size: 14px; } tr { border-bottom: 1px solid $cream; } td { padding: 12px 0; color: $muted; line-height: 1.7; vertical-align: top; &:first-child { padding-right: 16px; font-weight: 600; color: $ink; width: 38%; white-space: nowrap; } } }

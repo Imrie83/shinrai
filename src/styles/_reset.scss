@@ -1,0 +1,17 @@
+@use 'variables' as *;
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #{$ink}; --paper: #{$paper}; --cream: #{$cream};
+  --indigo: #{$indigo}; --indigo-dark: #{$indigo-dark}; --indigo-light: #{$indigo-light};
+  --accent: #{$accent}; --muted: #{$muted}; --white: #{$white};
+  --serif: #{$font-serif}; --sans: #{$font-sans};
+  --radius: #{$radius}; --shadow-sm: #{$shadow-sm}; --shadow-lg: #{$shadow-lg};
+}
+html { scroll-behavior: smooth; }
+body { font-family: $font-sans; background: $paper; color: $ink; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+::selection { background: $indigo; color: white; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: $paper; }
+::-webkit-scrollbar-thumb { background: $indigo; border-radius: 99px; }

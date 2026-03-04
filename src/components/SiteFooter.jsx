@@ -1,45 +1,31 @@
-const SiteFooter = ({ lang, navigate, t }) => (
-  <footer style={{ borderTop: "1px solid var(--cream)", background: "var(--white)", padding: "40px 24px" }}>
-    <div style={{ maxWidth: 1080, margin: "0 auto" }}>
-      <div style={{
-        display: "flex", justifyContent: "space-between", alignItems: "center",
-        flexWrap: "wrap", gap: 16, marginBottom: 22, paddingBottom: 22,
-        borderBottom: "1px solid var(--cream)",
-      }}>
-        <button
-          onClick={() => navigate("home")}
-          style={{ fontFamily: "var(--serif)", fontSize: 20, background: "none", border: "none", cursor: "pointer", padding: 0 }}
-        >
-          Shinrai<span style={{ color: "var(--indigo)" }}>.</span>
-        </button>
-        <div style={{ fontSize: 13, color: "var(--muted)" }}>{t.footerTagline}</div>
-      </div>
+import { useLang } from "../context/LangContext";
+import { useNav }  from "../context/NavContext";
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-        <div style={{ display: "flex", gap: 20 }}>
-          {[
-            [lang === "ja" ? "プライバシーポリシー" : "Privacy Policy", "privacy"],
-            [lang === "ja" ? "特定商取引法に基づく表示" : "Specified Commercial Transactions", "tokusho"],
-          ].map(([label, page]) => (
-            <button
-              key={page}
-              onClick={() => navigate(page)}
-              style={{
-                fontSize: 12, color: "var(--muted)", background: "none",
-                border: "none", cursor: "pointer", fontFamily: "var(--sans)",
-                transition: "color 0.15s", padding: 0,
-              }}
-              onMouseEnter={(e) => (e.target.style.color = "var(--indigo)")}
-              onMouseLeave={(e) => (e.target.style.color = "var(--muted)")}
-            >
-              {label}
-            </button>
-          ))}
+const SiteFooter = () => {
+  const { lang, t } = useLang();
+  const { navigate } = useNav();
+
+  return (
+    <footer className="site-footer">
+      <div className="site-footer__inner">
+        <div className="site-footer__top">
+          <button className="site-footer__logo" onClick={() => navigate("home")}>Shinrai<span>.</span></button>
+          <span className="site-footer__tagline">{t.footerTagline}</span>
         </div>
-        <div style={{ fontSize: 12, color: "var(--muted)" }}>© {t.footerCopy}</div>
+        <div className="site-footer__bottom">
+          <div className="site-footer__links">
+            {[
+              [lang === "ja" ? "プライバシーポリシー" : "Privacy Policy", "privacy"],
+              [lang === "ja" ? "特定商取引法に基づく表示" : "Specified Commercial Transactions", "tokusho"],
+            ].map(([label, page]) => (
+              <button key={page} className="site-footer__link" onClick={() => navigate(page)}>{label}</button>
+            ))}
+          </div>
+          <span className="site-footer__copy">© {t.footerCopy}</span>
+        </div>
       </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 export default SiteFooter;
