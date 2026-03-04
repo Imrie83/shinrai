@@ -9,7 +9,6 @@ function detectLang() {
   const s = localStorage.getItem("shinrai-lang");
   if (s === "ja" || s === "en") return s;
   const langs = navigator.languages?.length ? navigator.languages : [navigator.language || "en"];
-
   return langs.some(l => l.startsWith("ja")) ? "ja" : "en";
 }
 
@@ -17,7 +16,6 @@ export function LangProvider({ children }) {
   const [lang, setLangState] = useState("en");
   useEffect(() => { setLangState(detectLang()); }, []);
   function setLang(l) { localStorage.setItem("shinrai-lang", l); setLangState(l); }
-
   return <LangContext.Provider value={{ lang, setLang, t: T[lang] }}>{children}</LangContext.Provider>;
 }
 
@@ -25,6 +23,5 @@ export function LangProvider({ children }) {
 export function useLang() {
   const ctx = useContext(LangContext);
   if (!ctx) throw new Error("useLang must be used inside <LangProvider>");
-  
   return ctx;
 }

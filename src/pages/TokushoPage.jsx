@@ -1,6 +1,5 @@
 import { useLang } from "../context/LangContext";
 import LegalShell, { LegalSection, LegalTable } from "../components/LegalShell";
-
 const UPDATED = "2026-01-01";
 const ROWS_JA = [
   ["販売者名","Marcin Zielinski"],["所在地","【都道府県・市区町村まで。番地は請求があり次第開示します】"],
@@ -19,7 +18,6 @@ const ROWS_EN = [
   ["Delivery","Typically within two weeks of confirmed engagement"],
   ["Cancellations","Refunds not accepted after delivery of digital work. Revisions provided if deliverables don't meet agreed spec."],
 ];
-
 const TokushoPage = () => {
   const { lang } = useLang();
   if (lang === "ja") return (
@@ -33,5 +31,4 @@ const TokushoPage = () => {
     </LegalShell>
   );
 };
-
 export default TokushoPage;

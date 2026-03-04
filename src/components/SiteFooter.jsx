@@ -4,7 +4,6 @@ import { useNav }  from "../context/NavContext";
 const SiteFooter = () => {
   const { lang, t } = useLang();
   const { navigate } = useNav();
-
   return (
     <footer className="site-footer">
       <div className="site-footer__inner">
@@ -27,5 +26,4 @@ const SiteFooter = () => {
     </footer>
   );
 };
-
 export default SiteFooter;

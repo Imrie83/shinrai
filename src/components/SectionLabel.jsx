@@ -3,5 +3,4 @@ const SectionLabel = ({ children, light }) => (
     <span className="section-label__line" />{children}
   </div>
 );
-
 export default SectionLabel;

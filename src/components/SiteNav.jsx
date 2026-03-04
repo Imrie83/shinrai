@@ -7,7 +7,6 @@ const SiteNav = () => {
   const { lang, setLang, t } = useLang();
   const { navigate } = useNav();
   const [open, setOpen] = useState(false);
-
   return (
     <nav className="site-nav">
       <div className="site-nav__bar">
@@ -55,5 +54,4 @@ const SiteNav = () => {
     </nav>
   );
 };
-
 export default SiteNav;

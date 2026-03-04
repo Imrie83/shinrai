@@ -1,11 +1,8 @@
 import { useLang } from "../context/LangContext";
 import LegalShell, { LegalSection } from "../components/LegalShell";
-
 const UPDATED = "2026-01-01";
-
 const PrivacyPage = () => {
   const { lang } = useLang();
-
   if (lang === "ja") return (
     <LegalShell title="プライバシーポリシー" subtitle={`最終更新日：${UPDATED}`}>
       <LegalSection title="1. 収集する情報"><p>お問い合わせフォームを通じて、お名前・メールアドレス・ウェブサイトURLをお預かりします。</p></LegalSection>
@@ -17,7 +14,6 @@ const PrivacyPage = () => {
       <LegalSection title="7. お問い合わせ"><p>ご不明な点は <strong>[your@email.com]</strong> までご連絡ください。</p></LegalSection>
     </LegalShell>
   );
-
   return (
     <LegalShell title="Privacy Policy" subtitle={`Last updated: ${UPDATED}`}>
       <LegalSection title="1. Information Collected"><p>Via the contact form I collect your name, email address, and website URL.</p></LegalSection>
@@ -30,5 +26,4 @@ const PrivacyPage = () => {
     </LegalShell>
   );
 };
-
 export default PrivacyPage;

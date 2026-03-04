@@ -36,5 +36,4 @@ const LegalShell = ({ title, subtitle, children }) => {
     </>
   );
 };
-
 export default LegalShell;

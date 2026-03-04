@@ -1,3 +1,4 @@
+// Pure data — no JSX, no icon imports. Icons resolved in components via id maps.
 export const T = {
   en: {
     nav:    ["Services", "Process", "About", "Contact"],
@@ -77,6 +78,7 @@ export const T = {
     name: "Your Name", email: "Email Address", site: "Website URL",
     send: "Send Request", sending: "Sending…",
     success: "Request sent! I'll be in touch within 24 hours.",
+    formError: "Something went wrong — please try again or email me directly.",
     footerTagline: "Making Japanese businesses visible to the world.",
     footerCopy:    "2026 Shinrai Web. All rights reserved.",
   },
@@ -158,6 +160,7 @@ export const T = {
     name: "お名前", email: "メールアドレス", site: "サイトURL",
     send: "送信する", sending: "送信中…",
     success: "送信完了しました。24時間以内にご連絡いたします。",
+    formError: "送信に失敗しました。もう一度お試しいただくか、直接メールでご連絡ください。",
     footerTagline: "日本企業を、世界へ。",
     footerCopy:    "2026 Shinrai Web. 無断転載を禁じます。",
   },

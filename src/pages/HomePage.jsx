@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Globe, ArrowRight, CheckCircle2, User } from "lucide-react";
+import { Globe, ArrowRight, CheckCircle2, XCircle, User } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { fadeUp, stagger } from "../lib/motion";
 import { useLang } from "../context/LangContext";
 import { useNav }  from "../context/NavContext";
@@ -16,24 +17,32 @@ import SiteFooter   from "../components/SiteFooter";
 const HomePage = () => {
   const { t } = useLang();
   const { navigate } = useNav();
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
   const formRef = useRef(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
+    setStatus("loading");
     try {
-      await fetch("/api/send", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(new FormData(e.target))) });
-      setSent(true);
-    } catch { alert("Error sending form"); }
-    setLoading(false);
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        e.target,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+      setStatus("success");
+      e.target.reset();
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus("error");
+    }
   }
 
   return (
     <>
       <SiteNav />
 
+      {/* HERO */}
       <section className="section-pad">
         <div className="section-inner grid-hero">
           <motion.div variants={stagger} initial="hidden" animate="show">
@@ -187,20 +196,26 @@ const HomePage = () => {
               <h2 className="section-h2" style={{ marginBottom:10 }}>{t.formTitle}</h2>
               <p style={{ fontSize:15, color:"var(--muted)" }}>{t.formSub}</p>
             </motion.div>
-            {!sent ? (
-              <motion.form variants={fadeUp(0.08)} onSubmit={handleSubmit} style={{ display:"flex", flexDirection:"column", gap:14 }}>
-                {[{name:"name",type:"text",placeholder:t.name},{name:"email",type:"email",placeholder:t.email},{name:"site",type:"text",placeholder:t.site}].map(f => (
-                  <input key={f.name} {...f} required className="form-input" />
-                ))}
-                <button type="submit" disabled={loading} className="btn-primary" style={{ marginTop:4 }}>
-                  {loading ? t.sending : <>{t.send} <ArrowRight size={15} /></>}
-                </button>
-              </motion.form>
-            ) : (
+            {status === "success" ? (
               <motion.div variants={fadeUp()} style={{ textAlign:"center", padding:"48px 32px", background:"var(--white)", borderRadius:20, border:"1px solid var(--cream)" }}>
                 <CheckCircle2 size={44} color="var(--indigo)" style={{ margin:"0 auto 14px" }} />
                 <div style={{ fontFamily:"var(--serif)", fontSize:22 }}>{t.success}</div>
               </motion.div>
+            ) : (
+              <motion.form variants={fadeUp(0.08)} onSubmit={handleSubmit} style={{ display:"flex", flexDirection:"column", gap:14 }}>
+                {[{name:"name",type:"text",placeholder:t.name},{name:"email",type:"email",placeholder:t.email},{name:"site",type:"text",placeholder:t.site}].map(f => (
+                  <input key={f.name} {...f} required className="form-input" />
+                ))}
+                {status === "error" && (
+                  <div style={{ display:"flex", alignItems:"center", gap:8, padding:"12px 16px", background:"#fff0f0", border:"1px solid #ffc0c0", borderRadius:10, fontSize:14, color:"#c0392b" }}>
+                    <XCircle size={16} style={{ flexShrink:0 }} />
+                    {t.formError}
+                  </div>
+                )}
+                <button type="submit" disabled={status === "loading"} className="btn-primary" style={{ marginTop:4 }}>
+                  {status === "loading" ? t.sending : <>{t.send} <ArrowRight size={15} /></>}
+                </button>
+              </motion.form>
             )}
           </motion.div>
         </div>

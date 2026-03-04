@@ -12,7 +12,6 @@ export function NavProvider({ children }) {
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
-
   return <NavContext.Provider value={{ page, navigate }}>{children}</NavContext.Provider>;
 }
 
@@ -20,6 +19,5 @@ export function NavProvider({ children }) {
 export function useNav() {
   const ctx = useContext(NavContext);
   if (!ctx) throw new Error("useNav must be used inside <NavProvider>");
-  
   return ctx;
 }

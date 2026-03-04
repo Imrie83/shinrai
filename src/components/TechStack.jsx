@@ -1,12 +1,9 @@
 import { Code, Server, Database, Smartphone } from "lucide-react";
-
 const ICONS = { frontend: Code, backend: Server, data: Database, tooling: Smartphone };
-
 const TechStack = ({ groups }) => (
   <div className="tech-stack">
     {groups.map(({ id, label, techs }) => {
       const Icon = ICONS[id] ?? Code;
-
       return (
         <div key={id} className="tech-group">
           <div className="tech-group__header">
@@ -21,5 +18,4 @@ const TechStack = ({ groups }) => (
     })}
   </div>
 );
-
 export default TechStack;
