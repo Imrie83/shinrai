@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Globe, ArrowRight, CheckCircle2, XCircle, User } from "lucide-react";
 import emailjs from "@emailjs/browser";
+
 import { fadeUp, stagger } from "../lib/motion";
 import { useLang } from "../context/LangContext";
 import { useNav }  from "../context/NavContext";
@@ -16,6 +17,7 @@ import SiteFooter   from "../components/SiteFooter";
 
 const HomePage = () => {
   const { t } = useLang();
+  // eslint-disable-next-line no-unused-vars
   const { navigate } = useNav();
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
   const formRef = useRef(null);
@@ -33,6 +35,7 @@ const HomePage = () => {
       setStatus("success");
       e.target.reset();
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error("EmailJS error:", err);
       setStatus("error");
     }

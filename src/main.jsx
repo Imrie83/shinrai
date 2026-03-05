@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import { NavProvider }  from "./context/NavContext";
 import { LangProvider } from "./context/LangContext";
 import App from "./App";

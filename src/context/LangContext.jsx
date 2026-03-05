@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+
 import { T } from "../lib/translations";
 
 const LangContext = createContext(null);
@@ -19,7 +20,6 @@ export function LangProvider({ children }) {
   return <LangContext.Provider value={{ lang, setLang, t: T[lang] }}>{children}</LangContext.Provider>;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useLang() {
   const ctx = useContext(LangContext);
   if (!ctx) throw new Error("useLang must be used inside <LangProvider>");
