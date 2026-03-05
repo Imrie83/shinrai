@@ -1,5 +1,4 @@
 @use 'variables' as *;
-
 .hero-h1 {
   font-family: $font-serif; font-size: 50px; line-height: 1.1; letter-spacing: -0.02em;
   @media (min-width: 768px) and (max-width: $bp-tablet) { font-size: 44px; }

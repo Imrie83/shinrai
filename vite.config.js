@@ -4,11 +4,4 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/shinrai/",
   plugins: [react()],
-  css: {
-    preprocessorOptions: {
-      scss: {
-
-      },
-    },
-  },
 });

@@ -1,5 +1,4 @@
 @use 'variables' as *;
-
 // Tag pill
 .tag { display: inline-block; background: $indigo-light; color: $indigo; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; }
 
@@ -19,12 +18,19 @@
   background: rgba(247,244,239,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid $cream;
   &__bar { max-width: 1080px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
   &__logo { font-family: $font-serif; font-size: 22px; background: none; border: none; cursor: pointer; padding: 0; color: $ink; span { color: $indigo; } }
-  &__links { display: flex; gap: 28px; align-items: center; a { font-size: 14px; font-weight: 500; color: $muted; transition: color 0.15s; &:hover { color: $ink; } } }
+  &__links { display: flex; gap: 28px; align-items: center;
+    a, button { font-size: 14px; font-weight: 500; color: $muted; transition: color 0.15s; &:hover { color: $ink; } }
+  }
+  &__text-btn { background: none; border: none; cursor: pointer; font-family: $font-sans; padding: 0; }
   &__lang { display: flex; gap: 4px; margin-left: 4px; }
   &__lang-btn { padding: 4px 11px; border-radius: 8px; border: 1px solid $cream; background: transparent; color: $muted; font-size: 12px; font-weight: 600; cursor: pointer; font-family: $font-sans; transition: all 0.15s; &--active { border-color: $indigo; background: $indigo; color: white; } }
   &__mobile-row { display: none; align-items: center; gap: 8px; }
   &__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: $ink; }
-  &__drawer { display: none; flex-direction: column; background: $paper; border-top: 1px solid $cream; padding: 8px 0 16px; a { font-size: 14px; font-weight: 500; color: $muted; padding: 12px 20px; transition: color 0.15s; &:hover { color: $indigo; } } &--open { display: flex; } }
+  &__drawer { display: none; flex-direction: column; background: $paper; border-top: 1px solid $cream; padding: 8px 0 16px;
+    a, button { font-size: 14px; font-weight: 500; color: $muted; padding: 12px 20px; transition: color 0.15s; &:hover { color: $indigo; } }
+    &--open { display: flex; }
+  }
+  &__drawer-btn { background: none; border: none; cursor: pointer; font-family: $font-sans; text-align: left; width: 100%; }
   @media (max-width: $bp-mobile) {
     &__links { display: none; }
     &__mobile-row { display: flex; }
