@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Shinrai</title>
+  <script>
+    // GitHub Pages 404 redirect trick.
+    // Any deep URL (e.g. /shinrai/privacy) that GH Pages can't find gets sent
+    // here. We store the intended path and redirect to the app root, which
+    // then reads it and renders the right page.
+    sessionStorage.setItem("shinrai-redirect", window.location.pathname);
+    window.location.replace("/shinrai/");
+  </script>
+</head>
+<body></body>
+</html>
