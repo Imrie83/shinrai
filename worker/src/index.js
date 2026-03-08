@@ -76,16 +76,44 @@ export default {
       return corsResponse({ error: "A valid URL is required" }, 400, origin);
     }
 
-    let result;
-    try {
-      result = await analyzeV2(url, env, lang, request.signal);
-    } catch (e) {
-      if (e.name === "AbortError") return new Response(null, { status: 499 }); // client disconnected
-      console.error("Analysis error:", e.message);
-      return corsResponse({ error: `Analysis failed: ${e.message}` }, 502, origin);
-    }
+    // Stream the response so cloudflared tunnels don't time out while Ollama thinks.
+    // We trickle a newline every 5s to keep the connection alive, then write the
+    // real JSON result as the final line. The browser reads it as newline-delimited JSON.
+    const { readable, writable } = new TransformStream();
+    const writer = writable.getWriter();
+    const encoder = new TextEncoder();
 
-    return corsResponse(result, 200, origin);
+    // Keepalive interval — sends a blank line every 5s
+    const keepalive = setInterval(() => {
+      writer.write(encoder.encode("\n")).catch(() => clearInterval(keepalive));
+    }, 5000);
+
+    // Run the analysis in the background
+    analyzeV2(url, env, lang, request.signal)
+      .then(result => {
+        clearInterval(keepalive);
+        writer.write(encoder.encode(JSON.stringify(result) + "\n"));
+        writer.close();
+      })
+      .catch(e => {
+        clearInterval(keepalive);
+        if (e.name !== "AbortError") {
+          console.error("Analysis error:", e.message);
+          writer.write(encoder.encode(JSON.stringify({ error: `Analysis failed: ${e.message}` }) + "\n"));
+        }
+        writer.close();
+      });
+
+    return new Response(readable, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/x-ndjson",
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "X-Content-Type-Options": "nosniff",
+      },
+    });
   },
 };
 

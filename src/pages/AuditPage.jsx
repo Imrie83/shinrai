@@ -196,8 +196,43 @@ export default function AuditPage() {
         body: JSON.stringify({ url, lang }),
         signal: controller.signal,
       });
-      const data = await res.json();
-      if (!res.ok) { setErrMsg(data.error || "Something went wrong."); setStatus("error"); return; }
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setErrMsg(err.error || "Something went wrong.");
+        setStatus("error");
+        return;
+      }
+
+      // Read newline-delimited stream — blank lines are keepalives, last line is the result
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let lastJson = null;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop(); // keep incomplete last chunk
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed) lastJson = trimmed; // non-empty line = real data
+        }
+      }
+      // flush remaining buffer
+      if (buffer.trim()) lastJson = buffer.trim();
+
+      if (!lastJson) {
+        setErrMsg("No response from audit service.");
+        setStatus("error");
+        return;
+      }
+
+      const data = JSON.parse(lastJson);
+      if (data.error) { setErrMsg(data.error); setStatus("error"); return; }
+
       setCache(url, lang, data);
       incrementUsage();
       setResult(data);
