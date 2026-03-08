@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://imrie83.github.io/shinrai/sitemap.xml

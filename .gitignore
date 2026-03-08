@@ -8,6 +8,15 @@ node_modules/
 # Build output
 dist/
 
+# Wrangler
+.wrangler/
+worker/.wrangler/
+wrangler.toml.bak
+
+# Source maps (generated at build time)
+*.map
+
 # Misc
 .DS_Store
 *.log
+Thumbs.db

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+
 import { useLang } from "../context/LangContext";
 import { useNav }  from "../context/NavContext";
 
@@ -14,14 +15,19 @@ const SiteNav = () => {
   const { page, navigate } = useNav();
   const [open, setOpen] = useState(false);
 
-  function handleNavClick(sectionId) {
+  function handleNavClick(target) {
     setOpen(false);
-    if (page !== "home") {
-      // Navigate home first, then scroll after the page has rendered
-      navigate("home");
-      setTimeout(() => scrollTo(sectionId), 100);
+    // If the target starts with "#" it's a section anchor on the home page
+    // Otherwise it's a page route (e.g. "audit")
+    if (target.startsWith("#")) {
+      if (page !== "home") {
+        navigate("home");
+        setTimeout(() => scrollTo(target), 100);
+      } else {
+        scrollTo(target);
+      }
     } else {
-      scrollTo(sectionId);
+      navigate(target);
     }
   }
 
@@ -35,7 +41,9 @@ const SiteNav = () => {
         {/* Desktop links */}
         <div className="site-nav__links">
           {t.nav.map((item, i) => (
-            <button key={i} className="site-nav__text-btn" onClick={() => handleNavClick(t.navIds[i])}>
+            <button key={i}
+              className={`site-nav__text-btn${t.navIds[i] === "audit" ? " site-nav__audit-btn" : ""}`}
+              onClick={() => handleNavClick(t.navIds[i])}>
               {item}
             </button>
           ))}
@@ -68,7 +76,9 @@ const SiteNav = () => {
       {/* Mobile drawer */}
       <div className={`site-nav__drawer${open ? " site-nav__drawer--open" : ""}`}>
         {t.nav.map((item, i) => (
-          <button key={i} className="site-nav__drawer-btn" onClick={() => handleNavClick(t.navIds[i])}>
+          <button key={i}
+            className={`site-nav__drawer-btn${t.navIds[i] === "audit" ? " site-nav__drawer-btn--audit" : ""}`}
+            onClick={() => handleNavClick(t.navIds[i])}>
             {item}
           </button>
         ))}

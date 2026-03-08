@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as *;
 // Tag pill
 .tag { display: inline-block; background: $indigo-light; color: $indigo; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; }
@@ -22,15 +23,25 @@
     a, button { font-size: 14px; font-weight: 500; color: $muted; transition: color 0.15s; &:hover { color: $ink; } }
   }
   &__text-btn { background: none; border: none; cursor: pointer; font-family: $font-sans; padding: 0; }
+  &__audit-btn {
+    background: $indigo-light; border: 1px solid rgba($indigo, 0.25); border-radius: 8px;
+    padding: 5px 13px; color: $indigo !important; font-weight: 600;
+    transition: background 0.15s, border-color 0.15s;
+    &:hover { background: color.adjust($indigo-light, $lightness: -4%); color: $indigo !important; }
+  }
   &__lang { display: flex; gap: 4px; margin-left: 4px; }
-  &__lang-btn { padding: 4px 11px; border-radius: 8px; border: 1px solid $cream; background: transparent; color: $muted; font-size: 12px; font-weight: 600; cursor: pointer; font-family: $font-sans; transition: all 0.15s; &--active { border-color: $indigo; background: $indigo; color: $white; } }
+  &__lang-btn { padding: 4px 11px; border-radius: 8px; border: 1px solid $cream; background: transparent; color: $muted; font-size: 12px; font-weight: 600; cursor: pointer; font-family: $font-sans; transition: all 0.15s;
+    &--active { border-color: $indigo; background: $indigo; color: $paper !important; }
+  }
   &__mobile-row { display: none; align-items: center; gap: 8px; }
   &__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: $ink; }
   &__drawer { display: none; flex-direction: column; background: $paper; border-top: 1px solid $cream; padding: 8px 0 16px;
     a, button { font-size: 14px; font-weight: 500; color: $muted; padding: 12px 20px; transition: color 0.15s; &:hover { color: $indigo; } }
     &--open { display: flex; }
   }
-  &__drawer-btn { background: none; border: none; cursor: pointer; font-family: $font-sans; text-align: left; width: 100%; }
+  &__drawer-btn { background: none; border: none; cursor: pointer; font-family: $font-sans; text-align: left; width: 100%;
+    &--audit { color: $indigo !important; font-weight: 600; }
+  }
   @media (max-width: $bp-mobile) {
     &__links { display: none; }
     &__mobile-row { display: flex; }
@@ -82,3 +93,395 @@
 .legal-section { margin-bottom: 40px; h2 { font-family: $font-serif; font-size: 22px; margin-bottom: 12px; } p, li { font-size: 15px; line-height: 1.8; color: $muted; } ul { padding-left: 20px; display: flex; flex-direction: column; gap: 4px; } }
 .legal-divider { border-top: 1px solid $cream; padding-top: 40px; }
 .legal-table { overflow-x: auto; table { width: 100%; border-collapse: collapse; font-size: 14px; } tr { border-bottom: 1px solid $cream; } td { padding: 12px 0; color: $muted; line-height: 1.7; vertical-align: top; &:first-child { padding-right: 16px; font-weight: 600; color: $ink; width: 38%; white-space: nowrap; } } }
+
+// Persistent top CTA (always visible above the form)
+.audit-top-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  background: $indigo-light;
+  border: 1px solid rgba($indigo, 0.18);
+  border-radius: 14px;
+  margin-bottom: 28px;
+
+  p { font-size: 14px; color: $indigo; font-weight: 500; margin: 0; }
+
+  .btn-primary { font-size: 13px; padding: 9px 18px; white-space: nowrap; }
+
+  @media (max-width: $bp-mobile) {
+    flex-direction: column;
+    align-items: flex-start;
+    .btn-primary { width: 100% !important; justify-content: center; }
+  }
+}
+
+// ─── Audit page ───────────────────────────────────────────────────────────────
+
+.audit-form {
+  margin-bottom: 32px;
+
+  &__row {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+
+    @media (max-width: $bp-mobile) { flex-direction: column; }
+  }
+
+  &__input { flex: 1; margin-bottom: 0; }
+
+  &__btn {
+    width: auto;
+    white-space: nowrap;
+    padding: 0 28px;
+    @media (max-width: $bp-mobile) { width: 100%; }
+  }
+
+  &__note {
+    font-size: 12px;
+    color: $muted;
+    margin-top: 10px;
+  }
+}
+
+// Animated loading dots
+.audit-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 0;
+  text-align: center;
+  color: $muted;
+  font-size: 15px;
+  line-height: 1.7;
+
+  small { font-size: 13px; opacity: 0.7; }
+
+  &__dots {
+    display: flex;
+    gap: 8px;
+
+    span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: $indigo;
+      animation: audit-bounce 1.2s ease-in-out infinite;
+
+      &:nth-child(2) { animation-delay: 0.2s; }
+      &:nth-child(3) { animation-delay: 0.4s; }
+    }
+  }
+}
+
+@keyframes audit-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1);   opacity: 1;   }
+}
+
+.audit-spinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+  margin-right: 4px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.audit-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: #fff0ef;
+  border: 1px solid #ffc5c0;
+  border-radius: 12px;
+  color: #c0392b;
+  font-size: 14px;
+  margin-top: 16px;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
+  svg { flex-shrink: 0; margin-top: 2px; }
+}
+
+// Score ring
+.audit-score-ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+
+  &__label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__number {
+    font-family: $font-serif;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  &__sub {
+    font-size: 11px;
+    color: $muted;
+  }
+}
+
+// Summary card
+.audit-summary {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  background: $white;
+  border: 1px solid $cream;
+  border-radius: 20px;
+  padding: 28px;
+  margin: 32px 0 24px;
+  box-shadow: $shadow-sm;
+
+  @media (max-width: $bp-mobile) { flex-direction: column; align-items: center; text-align: center; }
+
+  &__text { flex: 1; }
+
+  &__counts {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    @media (max-width: $bp-mobile) { justify-content: center; }
+  }
+
+  &__body {
+    font-size: 15px;
+    line-height: 1.75;
+    color: $muted;
+    margin-bottom: 10px;
+  }
+}
+
+.audit-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+
+  &--high   { background: #fff0ef; color: #c0392b; }
+  &--medium { background: #fffbf0; color: #b7770d; }
+  &--low    { background: #f0faf0; color: #2e7d32; }
+}
+
+.audit-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: $indigo;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  &:hover { opacity: 1; }
+}
+
+// Issues list
+.audit-issues-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.audit-issues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.audit-issue {
+  border: 1px solid;
+  border-radius: 12px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  &__type {
+    font-size: 13px;
+    font-weight: 600;
+    color: $ink;
+  }
+
+  &__severity {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+
+  &__location {
+    font-size: 12px;
+    color: $muted;
+  }
+
+  &__toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $muted;
+    padding: 4px;
+    flex-shrink: 0;
+    display: flex;
+  }
+
+  &__body {
+    padding: 0 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    padding-top: 12px;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 8px;
+    font-size: 14px;
+    align-items: baseline;
+
+    @media (max-width: $bp-mobile) { grid-template-columns: 1fr; gap: 2px; }
+  }
+
+  &__row-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $muted;
+    padding-top: 1px;
+  }
+
+  &__row-value {
+    line-height: 1.6;
+    color: $ink;
+
+    &--original   { color: #c0392b; font-style: italic; }
+    &--suggestion { color: #2e7d32; font-weight: 500;   }
+  }
+}
+
+// Bottom CTA
+.audit-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px;
+  background: $indigo-light;
+  border-radius: 16px;
+  flex-wrap: wrap;
+
+  p {
+    font-size: 15px;
+    font-weight: 500;
+    color: $indigo;
+    margin: 0;
+  }
+}
+
+// JS framework warning banner
+.audit-js-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: #fffbf0;
+  border: 1px solid #ffe0a0;
+  border-radius: 12px;
+  color: #b7770d;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+// Rate limit banner
+.audit-rate-limit {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: #fff0ef;
+  border: 1px solid #ffc5c0;
+  border-radius: 12px;
+  color: #c0392b;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 16px;
+  word-break: break-word;
+}
+
+// "Showing top examples" banner above issue list
+.audit-sample-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #f0f4ff;
+  border: 1px solid #c7d4f8;
+  border-radius: 10px;
+  color: #3a4fa0;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+// Cached result notice
+.audit-cached-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+// Audits-left counter in form note
+.audit-form__usage {
+  margin-left: 8px;
+  opacity: 0.7;
+  font-size: 12px;
+}

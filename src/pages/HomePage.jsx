@@ -17,7 +17,6 @@ import SiteFooter   from "../components/SiteFooter";
 
 const HomePage = () => {
   const { t } = useLang();
-  // eslint-disable-next-line no-unused-vars
   const { navigate } = useNav();
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
   const formRef = useRef(null);
@@ -35,7 +34,6 @@ const HomePage = () => {
       setStatus("success");
       e.target.reset();
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error("EmailJS error:", err);
       setStatus("error");
     }

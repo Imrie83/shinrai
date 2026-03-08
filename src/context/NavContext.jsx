@@ -9,11 +9,13 @@ const PATHS = {
   home:    BASE,
   privacy: `${BASE}privacy`,
   tokusho: `${BASE}tokusho`,
+  audit:   `${BASE}audit`,
 };
 
 function pathToPage(pathname) {
   if (pathname.endsWith("/privacy")) return "privacy";
   if (pathname.endsWith("/tokusho")) return "tokusho";
+  if (pathname.endsWith("/audit"))   return "audit";
   return "home";
 }
 
