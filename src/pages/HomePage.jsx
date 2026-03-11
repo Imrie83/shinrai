@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Globe, ArrowRight, CheckCircle2, XCircle, User } from "lucide-react";
+import { Globe, ArrowRight, CheckCircle2, XCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 import { fadeUp, stagger } from "../lib/motion";
@@ -167,7 +167,7 @@ const HomePage = () => {
         <div className="section-inner grid-bio">
           <motion.div variants={fadeUp()} initial="hidden" whileInView="show" viewport={{ once:true }}>
             <SectionLabel>{t.bioLabel}</SectionLabel>
-            <div className="bio-photo"><User size={44} strokeWidth={1} /><span>Your photo here</span></div>
+            <div className="bio-photo"><img src="/portrait.jpg" alt="Marcin Zielinski" /></div>
             <div style={{ fontFamily:"var(--serif)", fontSize:22, marginBottom:4 }}>{t.bioTitle}</div>
             <div style={{ fontSize:13, color:"var(--muted)", marginBottom:16 }}>{t.bioRole}</div>
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
