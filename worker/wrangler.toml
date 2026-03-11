@@ -2,25 +2,31 @@ name            = "shinrai-audit"
 main            = "src/index.js"
 compatibility_date = "2024-09-01"
 
-# Secrets — never stored here, set via CLI:
+# Secrets — set via CLI (never stored in this file):
 #
-#   npx wrangler secret put AI_PROVIDER        # "ollama", "openai", or "claude"
+#   npx wrangler secret put AI_PROVIDER        # "claude" (recommended), "openai", or "ollama"
 #   npx wrangler secret put ALLOWED_ORIGIN     # https://imrie83.github.io
 #
-#   --- Ollama (prototyping) ---
-#   npx wrangler secret put OLLAMA_BASE_URL    # your cloudflared tunnel URL
-#   npx wrangler secret put OLLAMA_MODEL       # qwen3.5:9b  (default, fits 8GB VRAM entirely)
-#                                              # qwen3.5:27b if you want higher quality (offloads to RAM, slower)
-#                                              # qwen3.5:4b  if you need faster responses
+#   --- Claude (recommended) ---
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put ANTHROPIC_MODEL    # claude-haiku-4-5-20251001 (default — fast + cheap)
+#                                              # claude-sonnet-4-6 for higher quality
 #
-#   --- OpenAI / Groq (when ready) ---
+#   --- Screenshot — Browserless.io (production) ---
+#   npx wrangler secret put BROWSERLESS_API_KEY   # from https://browserless.io dashboard
+#   (when set, the local SCREENSHOT_SERVICE_URL is ignored)
+#
+#   --- Screenshot — local Playwright service (dev/fallback) ---
+#   npx wrangler secret put SCREENSHOT_SERVICE_URL  # e.g. your cloudflared tunnel URL
+#
+#   --- OpenAI (optional alternative) ---
 #   npx wrangler secret put OPENAI_BASE_URL
 #   npx wrangler secret put OPENAI_API_KEY
 #   npx wrangler secret put OPENAI_MODEL
 #
-#   --- Claude (when ready) ---
-#   npx wrangler secret put ANTHROPIC_API_KEY
-#   npx wrangler secret put ANTHROPIC_MODEL
+#   --- Ollama (local prototyping only) ---
+#   npx wrangler secret put OLLAMA_BASE_URL    # your cloudflared tunnel URL
+#   npx wrangler secret put OLLAMA_MODEL       # qwen3.5:9b
 
 # Local dev overrides — used by `wrangler dev`, NOT deployed
 [dev]
