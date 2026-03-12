@@ -86,8 +86,6 @@ export async function analyzeV2(url, env, lang = "en", clientSignal) {
     ? AbortSignal.any([clientSignal, timeoutSignal])
     : (clientSignal || timeoutSignal || undefined);
 
-  // Use Browserless.io when BROWSERLESS_API_KEY is set, otherwise fall back
-  // to the local Playwright service (SCREENSHOT_SERVICE_URL).
   let screenshot, html, finalUrl;
   try {
     if (env.BROWSERLESS_API_KEY) {

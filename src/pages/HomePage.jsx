@@ -133,6 +133,16 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* PRICING NOTE */}
+      <section className="section-pad" style={{ background: "var(--cream)", paddingTop: 24, paddingBottom: 24 }}>
+        <div className="section-inner" style={{ textAlign: "center" }}>
+          <motion.p variants={fadeUp()} initial="hidden" whileInView="show" viewport={{ once: true }}
+            style={{ fontSize: 14, color: "var(--muted)" }}>
+            {t.pricingNote}
+          </motion.p>
+        </div>
+      </section>
+
       {/* TRUST + CASE STUDY */}
       <section id="trust" className="section-pad">
         <div className="section-inner grid-2col">
@@ -188,6 +198,24 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="section-pad" style={{ background: "var(--cream)" }}>
+        <div className="section-inner" style={{ maxWidth: 640, margin: "0 auto" }}>
+          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
+            <motion.div variants={fadeUp()} style={{ marginBottom: 32 }}>
+              <SectionLabel>{t.faqLabel}</SectionLabel>
+              <h2 className="section-h2">{t.faqTitle}</h2>
+            </motion.div>
+            {t.faq.map((item, i) => (
+              <motion.div key={i} variants={fadeUp()} style={{ marginBottom: 24 }}>
+                <p style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>{item.q}</p>
+                <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.75 }}>{item.a}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* CONTACT */}
       <section id="contact" className="section-pad">
         <div style={{ maxWidth:540, margin:"0 auto" }} ref={formRef}>
@@ -207,6 +235,7 @@ const HomePage = () => {
                 {[{name:"name",type:"text",placeholder:t.name},{name:"email",type:"email",placeholder:t.email},{name:"site",type:"text",placeholder:t.site}].map(f => (
                   <input key={f.name} {...f} required className="form-input" />
                 ))}
+                <textarea name="message" placeholder={t.message} rows={4} className="form-input" style={{ resize: "vertical" }} />
                 {status === "error" && (
                   <div style={{ display:"flex", alignItems:"center", gap:8, padding:"12px 16px", background:"#fff0f0", border:"1px solid #ffc0c0", borderRadius:10, fontSize:14, color:"#c0392b" }}>
                     <XCircle size={16} style={{ flexShrink:0 }} />
