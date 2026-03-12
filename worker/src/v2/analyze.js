@@ -86,6 +86,8 @@ export async function analyzeV2(url, env, lang = "en", clientSignal) {
     ? AbortSignal.any([clientSignal, timeoutSignal])
     : (clientSignal || timeoutSignal || undefined);
 
+  // Use Browserless.io when BROWSERLESS_API_KEY is set, otherwise fall back
+  // to the local Playwright service (SCREENSHOT_SERVICE_URL).
   let screenshot, html, finalUrl;
   try {
     if (env.BROWSERLESS_API_KEY) {
@@ -98,8 +100,8 @@ export async function analyzeV2(url, env, lang = "en", clientSignal) {
     throw new Error(`Failed to get screenshot: ${e.message}`);
   }
 
-  const allElements = extractChunks(html);
-  const elements = trimToTokenBudget(allElements);
+  const allElements  = extractChunks(html);
+  const elements     = trimToTokenBudget(allElements);
   const isJsRendered = detectJsFramework(html);
 
   let result;
@@ -108,7 +110,7 @@ export async function analyzeV2(url, env, lang = "en", clientSignal) {
   else result = await analyzeOllamaVision(screenshot, elements, env, lang, signal);
 
   result.screenshot = screenshot;
-  result.finalUrl = finalUrl;
+  result.finalUrl   = finalUrl;
   if (isJsRendered) result.jsWarning = true;
 
   return result;
