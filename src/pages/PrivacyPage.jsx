@@ -10,8 +10,8 @@ const PrivacyPage = () => {
       <LegalSection title="3. 第三者への提供"><p>ご本人の同意がある場合を除き、個人情報を第三者に提供することはありません。</p></LegalSection>
       <LegalSection title="4. データの保管"><p>サービス提供に必要な期間のみ保管し、不要となった情報は速やかに削除します。</p></LegalSection>
       <LegalSection title="5. クッキー"><p>現在、マーケティング目的のクッキーは使用していません。</p></LegalSection>
-      <LegalSection title="6. お客様の権利"><p>個人情報の開示・訂正・削除はいつでも請求できます。📧 <strong>[your@email.com]</strong></p></LegalSection>
-      <LegalSection title="7. お問い合わせ"><p>ご不明な点は <strong>[your@email.com]</strong> までご連絡ください。</p></LegalSection>
+      <LegalSection title="6. お客様の権利"><p>個人情報の開示・訂正・削除はいつでも請求できます。📧 <strong>zielinski.marcin@shinrai.pro</strong></p></LegalSection>
+      <LegalSection title="7. お問い合わせ"><p>ご不明な点は <strong>zielinski.marcin@shinrai.pro</strong> までご連絡ください。</p></LegalSection>
     </LegalShell>
   );
   return (
@@ -21,8 +21,8 @@ const PrivacyPage = () => {
       <LegalSection title="3. Sharing"><p>Your data is never sold or shared with third parties, except with your consent or when required by law.</p></LegalSection>
       <LegalSection title="4. Retention"><p>Data is kept only as long as needed and deleted promptly when no longer required.</p></LegalSection>
       <LegalSection title="5. Cookies"><p>No marketing or tracking cookies are currently used.</p></LegalSection>
-      <LegalSection title="6. Your Rights"><p>You can request access, correction, or deletion of your data at any time. 📧 <strong>[your@email.com]</strong></p></LegalSection>
-      <LegalSection title="7. Contact"><p>Questions: <strong>[your@email.com]</strong></p></LegalSection>
+      <LegalSection title="6. Your Rights"><p>You can request access, correction, or deletion of your data at any time. 📧 <strong>zielinski.marcin@shinrai.pro</strong></p></LegalSection>
+      <LegalSection title="7. Contact"><p>Questions: <strong>zielinski.marcin@shinrai.pro</strong></p></LegalSection>
     </LegalShell>
   );
 };

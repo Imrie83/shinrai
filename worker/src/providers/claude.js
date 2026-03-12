@@ -1,7 +1,7 @@
 import { VISION_SYSTEM_PROMPT_EN, VISION_SYSTEM_PROMPT_JA, buildVisionUserPrompt, parseAIResponse } from "./shared.js";
 
 export async function analyzeVision(screenshot, elements, env, lang = "en", signal) {
-  const model = env.ANTHROPIC_MODEL || "claude-sonnet-4-6";
+  const model = env.ANTHROPIC_MODEL || "claude-haiku-4-5-20251001";
   const systemPrompt = lang === "ja" ? VISION_SYSTEM_PROMPT_JA : VISION_SYSTEM_PROMPT_EN;
 
   const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -21,7 +21,7 @@ export async function analyzeVision(screenshot, elements, env, lang = "en", sign
           content: [
             {
               type: "image",
-              source: { type: "base64", media_type: "image/png", data: screenshot },
+              source: { type: "base64", media_type: "image/jpeg", data: screenshot },
             },
             { type: "text", text: buildVisionUserPrompt(elements, lang) },
           ],

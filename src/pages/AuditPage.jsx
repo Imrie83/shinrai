@@ -240,7 +240,7 @@ export default function AuditPage() {
     } catch (err) {
       // Ignore abort errors — user navigated away intentionally
       if (err.name === "AbortError") return;
-      setErrMsg("Could not reach the audit service. Is the Worker running?");
+      setErrMsg("Could not reach the audit service. Please try again in a moment.");
       setStatus("error");
     }
   }
