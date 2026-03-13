@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const NavContext = createContext(null);
 
-// Read base from Vite — "/shinrai/" in production, "/" in dev
+// Read base from Vite — "/" in both production and dev
 const BASE = import.meta.env.BASE_URL; // always has leading and trailing slash
 
 const PATHS = {
@@ -10,12 +10,14 @@ const PATHS = {
   privacy: `${BASE}privacy`,
   tokusho: `${BASE}tokusho`,
   audit:   `${BASE}audit`,
+  faq:     `${BASE}faq`,
 };
 
 function pathToPage(pathname) {
   if (pathname.endsWith("/privacy")) return "privacy";
   if (pathname.endsWith("/tokusho")) return "tokusho";
   if (pathname.endsWith("/audit"))   return "audit";
+  if (pathname.endsWith("/faq"))     return "faq";
   return "home";
 }
 

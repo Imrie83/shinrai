@@ -276,14 +276,6 @@ export default function AuditPage() {
               </p>
             </motion.div>
 
-            {/* Persistent CTA — always visible */}
-            <motion.div variants={fadeUp(0.04)} className="audit-top-cta">
-              <p>{t.auditCtaText}</p>
-              <button className="btn-primary" style={{ width: "auto" }} onClick={goToContact}>
-                {t.auditCtaBtn} <ArrowRight size={15} />
-              </button>
-            </motion.div>
-
             {/* Form */}
             <motion.form variants={fadeUp(0.08)} onSubmit={handleAudit} className="audit-form">
               <div className="audit-form__row">
@@ -312,6 +304,14 @@ export default function AuditPage() {
                 )}
               </p>
             </motion.form>
+
+            {/* CTA below form */}
+            <motion.div variants={fadeUp(0.12)} className="audit-bottom-cta">
+              <p>{t.auditCtaText}</p>
+              <button className="btn-secondary" onClick={goToContact}>
+                {t.auditCtaBtn} <ArrowRight size={15} />
+              </button>
+            </motion.div>
 
             {/* Rate limited */}
             {(isLimited || status === "limited") && (

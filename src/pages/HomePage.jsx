@@ -134,14 +134,12 @@ const HomePage = () => {
       </section>
 
       {/* PRICING NOTE */}
-      <section className="section-pad" style={{ background: "var(--cream)", paddingTop: 24, paddingBottom: 24 }}>
-        <div className="section-inner" style={{ textAlign: "center" }}>
-          <motion.p variants={fadeUp()} initial="hidden" whileInView="show" viewport={{ once: true }}
-            style={{ fontSize: 14, color: "var(--muted)" }}>
-            {t.pricingNote}
-          </motion.p>
-        </div>
-      </section>
+      <motion.div variants={fadeUp()} initial="hidden" whileInView="show" viewport={{ once: true }}
+        className="pricing-note">
+        <span className="pricing-note__amount">{t.pricingAmount}</span>
+        <span className="pricing-note__sep">—</span>
+        <span className="pricing-note__detail">{t.pricingDetail}</span>
+      </motion.div>
 
       {/* TRUST + CASE STUDY */}
       <section id="trust" className="section-pad">
@@ -177,7 +175,7 @@ const HomePage = () => {
         <div className="section-inner grid-bio">
           <motion.div variants={fadeUp()} initial="hidden" whileInView="show" viewport={{ once:true }}>
             <SectionLabel>{t.bioLabel}</SectionLabel>
-            <div className="bio-photo"><img src={`${import.meta.env.BASE_URL}portrait.jpg`} alt="Marcin Zielinski" /></div>
+            <div className="bio-photo"><img src="/portrait.jpg" alt="Marcin Zielinski" /></div>
             <div style={{ fontFamily:"var(--serif)", fontSize:22, marginBottom:4 }}>{t.bioTitle}</div>
             <div style={{ fontSize:13, color:"var(--muted)", marginBottom:16 }}>{t.bioRole}</div>
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -194,24 +192,6 @@ const HomePage = () => {
             <p style={{ fontSize:15, lineHeight:1.85, color:"var(--muted)", marginBottom:28 }}>{t.bioCopy}</p>
             <p style={{ fontSize:12, fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase", color:"var(--indigo)", marginBottom:4 }}>{t.bioTechLabel}</p>
             <TechStack groups={t.bioTechGroups} />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="section-pad" style={{ background: "var(--cream)" }}>
-        <div className="section-inner" style={{ maxWidth: 640, margin: "0 auto" }}>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
-            <motion.div variants={fadeUp()} style={{ marginBottom: 32 }}>
-              <SectionLabel>{t.faqLabel}</SectionLabel>
-              <h2 className="section-h2">{t.faqTitle}</h2>
-            </motion.div>
-            {t.faq.map((item, i) => (
-              <motion.div key={i} variants={fadeUp()} style={{ marginBottom: 24 }}>
-                <p style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>{item.q}</p>
-                <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.75 }}>{item.a}</p>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </section>

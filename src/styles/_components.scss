@@ -13,6 +13,14 @@
   &:disabled { opacity: 0.6; cursor: default; }
 }
 
+.btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: transparent; color: $indigo; padding: 11px 22px; border-radius: 12px;
+  border: 1.5px solid $indigo; font-family: $font-sans; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s, color 0.2s;
+  &:hover { background: $indigo; color: white; }
+}
+
 // Nav
 .site-nav {
   position: sticky; top: 0; z-index: 50;
@@ -95,7 +103,7 @@
 .legal-table { overflow-x: auto; table { width: 100%; border-collapse: collapse; font-size: 14px; } tr { border-bottom: 1px solid $cream; } td { padding: 12px 0; color: $muted; line-height: 1.7; vertical-align: top; &:first-child { padding-right: 16px; font-weight: 600; color: $ink; width: 38%; white-space: nowrap; } } }
 
 // Persistent top CTA (always visible above the form)
-.audit-top-cta {
+.audit-bottom-cta {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,16 +112,14 @@
   background: $indigo-light;
   border: 1px solid rgba($indigo, 0.18);
   border-radius: 14px;
-  margin-bottom: 28px;
+  margin-top: 16px;
 
   p { font-size: 14px; color: $indigo; font-weight: 500; margin: 0; }
-
-  .btn-primary { font-size: 13px; padding: 9px 18px; white-space: nowrap; }
 
   @media (max-width: $bp-mobile) {
     flex-direction: column;
     align-items: flex-start;
-    .btn-primary { width: 100% !important; justify-content: center; }
+    .btn-secondary { width: 100%; justify-content: center; }
   }
 }
 
@@ -484,4 +490,34 @@
   margin-left: 8px;
   opacity: 0.7;
   font-size: 12px;
+}
+
+.pricing-note {
+  background: $indigo;
+  color: white;
+  text-align: center;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  &__amount {
+    font-family: $font-serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  &__sep {
+    opacity: 0.4;
+    font-size: 16px;
+  }
+  &__detail {
+    font-size: 13px;
+    opacity: 0.75;
+  }
+  @media (max-width: $bp-mobile) {
+    flex-direction: column;
+    gap: 4px;
+    &__sep { display: none; }
+  }
 }

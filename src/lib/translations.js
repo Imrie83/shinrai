@@ -1,8 +1,8 @@
 // Pure data — no JSX, no icon imports. Icons resolved in components via id maps.
 export const T = {
   en: {
-    nav:    ["Services", "Process", "About", "Contact", "Free Audit"],
-    navIds: ["#services", "#process", "#about", "#contact", "audit"],
+    nav:    ["Services", "Process", "About", "FAQ", "Contact", "Free Audit"],
+    navIds: ["#services", "#process", "#about", "faq", "#contact", "audit"],
     badge:  "English Localization & UX",
     heroTitle:  ["Turn Your Japanese", "Website Into a"],
     heroItalic: "Global Client Magnet.",
@@ -72,7 +72,8 @@ export const T = {
       { id: "data",     label: "Data",     techs: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Supabase"] },
       { id: "tooling",  label: "Tooling",  techs: ["Git", "Docker", "Vercel", "AWS", "CI/CD"] },
     ],
-    pricingNote: "Projects start from ¥20,000 — every engagement is scoped and quoted individually.",
+    pricingAmount: "Projects start from ¥20,000",
+    pricingDetail: "every engagement is scoped and quoted individually",
     faqLabel: "FAQ",
     faqTitle: "Common Questions",
     faq: [
@@ -140,8 +141,8 @@ export const T = {
     auditRowWhy:        "Why",
   },
   ja: {
-    nav:    ["サービス", "流れ", "自己紹介", "お問い合わせ", "無料診断ツール"],
-    navIds: ["#services", "#process", "#about", "#contact", "audit"],
+    nav:    ["サービス", "流れ", "自己紹介", "よくある質問", "お問い合わせ", "無料診断ツール"],
+    navIds: ["#services", "#process", "#about", "faq", "#contact", "audit"],
     badge:  "英語ローカライズ・UX改善",
     heroTitle:  ["海外のお客様に", "伝わる英語サイトへ。"],
     heroItalic: "",
@@ -211,7 +212,8 @@ export const T = {
       { id: "data",     label: "データ",         techs: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Supabase"] },
       { id: "tooling",  label: "ツール・環境",   techs: ["Git", "Docker", "Vercel", "AWS", "CI/CD"] },
     ],
-    pricingNote: "料金は２万円〜。内容に応じて個別にお見積りします。",
+    pricingAmount: "料金は２万円〜",
+    pricingDetail: "内容に応じて個別にお見積りします",
     faqLabel: "よくある質問",
     faqTitle: "よくある質問",
     faq: [
