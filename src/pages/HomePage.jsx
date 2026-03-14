@@ -175,7 +175,23 @@ const HomePage = () => {
         <div className="section-inner grid-bio">
           <motion.div variants={fadeUp()} initial="hidden" whileInView="show" viewport={{ once:true }}>
             <SectionLabel>{t.bioLabel}</SectionLabel>
-            <div className="bio-photo"><img src="/portrait.jpg" alt="Marcin Zielinski" /></div>
+            <div className="bio-photo">
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="/portrait-280.webp 280w, /portrait-360.webp 360w, /portrait-560.webp 560w"
+                  sizes="(max-width: 767px) 180px, (max-width: 1023px) 220px, 280px"
+                />
+                <img
+                  src="/portrait-560.jpg"
+                  alt="Marcin Zielinski"
+                  width="280"
+                  height="350"
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </picture>
+            </div>
             <div style={{ fontFamily:"var(--serif)", fontSize:22, marginBottom:4 }}>{t.bioTitle}</div>
             <div style={{ fontSize:13, color:"var(--muted)", marginBottom:16 }}>{t.bioRole}</div>
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
